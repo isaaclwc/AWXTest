@@ -1,0 +1,13 @@
+---
+  - hosts: 192.168.0.190
+    name: gather facts and ensure all packages are updated
+    become: yes
+    tasks:
+      - name: gather facts
+        gather_facts:
+          ansible_facts: true
+
+      - name: ensure all packages are updated
+        apt:
+          update_cache: true
+          state: latest
