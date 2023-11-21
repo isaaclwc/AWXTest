@@ -1,13 +1,17 @@
 ---
   - hosts: 192.168.0.190
-    name: ensure all packages are updated
+    name: test ansible modules and commands
     become: yes
     tasks:
-      
-#      - name: ensure all packages are updated
-#        apt:
-#          update_cache: true
-#          state: latest
+
+      - name: gather service facts
+        service_facts:
+
+      - name: output the service status
+        debug:
+          msg: "Service {{ service_name }} is {{ ansible_facts.services[service.name].state }}"
+        vars:
+          service_name: "sshd"
       
       - name: get service status
         shell: "sudo systemctl status sshd"
@@ -16,3 +20,8 @@
       - name: output service status
         debug:
           msg: "{{ service_status_output.stdout }}"
+
+#      - name: ensure all packages are updated
+#        apt:
+#          update_cache: true
+#          state: latest
