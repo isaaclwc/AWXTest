@@ -4,23 +4,27 @@
     become: yes
     tasks:
 
-      - name: gather service facts
-        service_facts:
-
-      - name: output service status
+      - name: display ansible facts
         debug:
-          var: ansible_facts.services
-#          msg: "Service {{ service_name }} is {{ ansible_facts.services[service_name].state }}"
-#        vars:
-#          service_name: "sshd"
+          var: ansible_facts
+
+      # - name: gather service facts
+      #   service_facts:
+
+      # - name: output service status
+      #   debug:
+      #     var: ansible_facts.services
+        #   msg: "Service {{ service_name }} is {{ ansible_facts.services[service_name].state }}"
+        # vars:
+        #   service_name: "sshd"
       
-      - name: get service status
-        shell: "sudo systemctl status sshd"
-        register: service_status_output
+      # - name: get service status
+      #   shell: "sudo systemctl status sshd"
+      #   register: service_status_output
 
-      - name: output service status
-        debug:
-          msg: "{{ service_status_output.stdout }}"
+      # - name: output service status
+      #   debug:
+      #     msg: "{{ service_status_output.stdout }}"
 
 #      - name: ensure all packages are updated
 #        apt:
