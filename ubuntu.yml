@@ -7,3 +7,11 @@
         apt:
           update_cache: true
           state: latest
+
+      - name: get service status
+        shell: "sudo systemctl status sshd"
+        register: service_status_output
+
+      - name: output service status
+        debug:
+          msg: "{{ service_status_output.stdout }}"
