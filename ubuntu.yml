@@ -3,11 +3,12 @@
     name: ensure all packages are updated
     become: yes
     tasks:
-      - name: ensure all packages are updated
-        apt:
-          update_cache: true
-          state: latest
-
+      
+#      - name: ensure all packages are updated
+#        apt:
+#          update_cache: true
+#          state: latest
+      
       - name: get service status
         shell: "sudo systemctl status sshd"
         register: service_status_output
