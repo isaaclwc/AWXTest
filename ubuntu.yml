@@ -7,11 +7,12 @@
       - name: gather service facts
         service_facts:
 
-      - name: output the service status
+      - name: output service status
         debug:
-          msg: "Service {{ service_name }} is {{ ansible_facts.services[service_name].state }}"
-        vars:
-          service_name: "sshd"
+          var: ansible_facts.services
+#          msg: "Service {{ service_name }} is {{ ansible_facts.services[service_name].state }}"
+#        vars:
+#          service_name: "sshd"
       
       - name: get service status
         shell: "sudo systemctl status sshd"
