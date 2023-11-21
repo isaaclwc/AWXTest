@@ -8,9 +8,13 @@
         debug:
           var: ansible_facts
 
-      - name: display service facts
+      - name: display service mgr facts
         debug:
           msg: "{{ ansible_facts.service_mgr }}"
+
+      - name: output service status
+        debug:
+           var: ansible_facts.services
 
       # - name: gather service facts
       #   service_facts:
